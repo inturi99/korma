@@ -3,7 +3,7 @@
   (:use korma.core))
 
 ;; get all users
-(defn get-all []
+(defn get-all-users []
   (select  db/users))
 
 ;; Select User Id
@@ -12,9 +12,9 @@
            (where (= :id id))))
 
 ;; insert user
-(defn insert-user [user]
+(defn add-user [first last]
   (insert db/users
-          (values user)))
+          (values {:first first :last last})))
 ;;(insert-user {:first "Krishna" :last "Rao"})
 
 ;; delete user

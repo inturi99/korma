@@ -21,7 +21,7 @@
   (table :users)
   (database spec)
 
-  (entity-fields :first :last)
+  (entity-fields :id :first :last)
 
   (prepare (fn [{last :last :as v}]
              (if last
@@ -40,6 +40,6 @@
   (table :address)
   (database spec)
   (belongs-to users)
-  (entity-fields :country :users_id))
+  (entity-fields :id  :country :users_id))
 
 
