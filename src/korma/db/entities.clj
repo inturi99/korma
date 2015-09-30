@@ -14,14 +14,32 @@
              :user "postgres"
              :password "Design_20"}))
 
+(declare users address)
+
 (defentity users
   (pk :id)
   (table :users)
   (database spec)
+
+  (entity-fields :first :last)
+
   (prepare (fn [{last :last :as v}]
              (if last
                (assoc v :last (str/upper-case last)) v)))
   ;; captilizes first field on select
   (transform (fn [{first :first :as v}]
                (if first
-                 (assoc v :first (str/capitalize first)) v))))
+                 (assoc v :first (str/capitalize first)) v)))
+
+
+  ;; Relationships
+  (has-one address))
+
+(defentity address
+  (pk :id)
+  (table :address)
+  (database spec)
+  (belongs-to users)
+  (entity-fields :country :users_id))
+
+

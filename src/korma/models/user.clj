@@ -15,6 +15,7 @@
 (defn insert-user [user]
   (insert db/users
           (values user)))
+;;(insert-user {:first "Krishna" :last "Rao"})
 
 ;; delete user
 (defn delete-user [id]
@@ -26,3 +27,20 @@
   (update  db/users
            (set-fields user)
            (where {:id [= id]})))
+;;(update-user {:first "KrishnaRao" :last "Inturi"} 1)
+
+;; you can get a string of the SQL instead of executing
+;; by using the sql-only mode
+(defn get-sql-only [id]
+  (sql-only
+   (select  db/address
+            (where (= :users_id id)))))
+
+;; get all address
+(defn get-all-address []
+  (select db/address))
+
+;; select user id
+(defn get-addrees [userid]
+  (select db/address
+          (where (= :users_id userid))))
