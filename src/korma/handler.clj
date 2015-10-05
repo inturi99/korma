@@ -18,6 +18,9 @@
   (cc/GET "/get-all-users"
           []
           (views/all-users-page))
+  (cc/POST "/delete-user"
+           {params :params}
+           (views/delete-user-results-page params))
   (route/resources "/")
   (route/not-found "Not Found"))
 

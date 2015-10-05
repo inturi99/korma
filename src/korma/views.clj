@@ -73,6 +73,13 @@
      header-links
      [:h1 "All users"]
      [:table
-      [:tr [:th "id"] [:th "first"] [:th "last"]]
+      [:tr [:th "id"] [:th "first"] [:th "last"] [:th " "] [:th " "]]
       (for [usr allusers]
-        [:tr [:td (:id usr)] [:td (:first usr)] [:td (:last usr)]])])))
+        [:tr [:td (:id usr)] [:td (:first usr)] [:td (:last usr)] [:td [:a {:href "/add-user"} "Update"]]  [:td [:a {:href "/delete-user"  :id usr} "Delete"]]])])))
+
+
+(defn delete-user-results-page
+  [{:keys [id]}]
+  (let [id (db/delete-user id)]
+    (hic-p/html5
+     (gen-page-head "All Users in db"))))

@@ -1,13 +1,22 @@
 body {
-    background-color: Cornsilk;
+    background-color: #DCF2FF;
 }
 
 #header-links {
-    background-color: BurlyWood;
+    background-color: #FFF7DC;
     padding: 10px;
 }
 
 h1 {
     color: CornflowerBlue;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
 
