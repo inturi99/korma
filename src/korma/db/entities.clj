@@ -14,7 +14,7 @@
              :user "postgres"
              :password "Design_20"}))
 
-(declare users address)
+(declare users address email account  posts users_posts)
 
 (defentity users
   (pk :id)
@@ -33,7 +33,10 @@
 
 
   ;; Relationships
-  (has-one address))
+  (has-one address)
+  (has-many email)
+  (belongs-to account)
+  (many-to-many posts :users_posts))
 
 (defentity address
   (pk :id)
@@ -42,4 +45,23 @@
   (belongs-to users)
   (entity-fields :id  :country :users_id))
 
+(defentity email
+  (pk :id)
+  (table :email)
+  (database spec)
+  (belongs-to users)
+  (entity-fields :id  :email :user_id))
+
+(defentity posts
+  (database spec)
+  (many-to-many users :users_posts))
+
+(defentity account
+  (database spec)
+  (has-one users))
+
+(defentity users_posts
+  (database spec))
+
+ 
 
